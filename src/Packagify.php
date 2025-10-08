@@ -20,7 +20,20 @@ use Illuminate\Support\Traits\Macroable;
 class Packagify
 {
     // Concerns
-    use Conditionable, Macroable;
+    use Concerns\HasAliases,
+        Concerns\HasCommands,
+        Concerns\HasComponents,
+        Concerns\HasComposers,
+        Concerns\HasConfigurations,
+        Concerns\HasMigrations,
+        Concerns\HasProviders,
+        Concerns\HasRoutes,
+        Concerns\HasHelpers,
+        Concerns\HasMacros,
+        Concerns\HasTranslations,
+        Concerns\HasViews,
+        Conditionable,
+        Macroable;
 
     /**
      * The package name.
