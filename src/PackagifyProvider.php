@@ -5,6 +5,7 @@ namespace Larawise\Packagify;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Larawise\Packagify\Exceptions\PackagifyException;
+use ReflectionClass;
 
 /**
  * Srylius - The ultimate symphony for technology architecture!
@@ -98,10 +99,14 @@ abstract class PackagifyProvider extends ServiceProvider
 
         // Initialize the Packagify instance and set its properties.
         $this->package = new Packagify;
+        $this->package->path($this->path());
 
         // Configure and validate the package.
         $this->configure($this->package);
         $this->validate($this->package);
+
+        // Set the package prefix, using the config value or a default.
+        $this->prefix = $this->package->prefix ??= config('packagify.prefix', $this->prefix);
 
         // Hook for any actions after registering the package.
         $this->packageRegistered();
@@ -133,4 +138,24 @@ abstract class PackagifyProvider extends ServiceProvider
             throw new PackagifyException('This package does not have a prefix. You can set one with `$package->prefix("larawise/")');
         }
     }
+
+    /**
+     * Get the current directory path of a packagify package.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    protected function path($path = '')
+    {
+        // Use ReflectionClass to get the file name of the current class.
+        $reflector = new ReflectionClass($this);
+
+        // Get the parent directory of the src folder.
+        $basePath = dirname($reflector->getFileName(), 2);
+
+        // Concatenate the cleaned-up path with the optional parameter $path.
+        return $basePath . ($path ? DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR) : '');
+    }
+
 }
