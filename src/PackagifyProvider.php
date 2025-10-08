@@ -4,6 +4,7 @@ namespace Larawise\Packagify;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
+use Larawise\Packagify\Exceptions\PackagifyException;
 
 /**
  * Srylius - The ultimate symphony for technology architecture!
@@ -88,6 +89,7 @@ abstract class PackagifyProvider extends ServiceProvider
      * Register the application services.
      *
      * @return void
+     * @throws PackagifyException
      */
     public function register()
     {
@@ -99,8 +101,36 @@ abstract class PackagifyProvider extends ServiceProvider
 
         // Configure and validate the package.
         $this->configure($this->package);
+        $this->validate($this->package);
 
         // Hook for any actions after registering the package.
         $this->packageRegistered();
+    }
+
+    /**
+     * Validate the packagify package.
+     *
+     * @param Packagify $package
+     *
+     * @return void
+     * @throws PackagifyException
+     */
+    protected function validate($package)
+    {
+        if (empty($package->name)) {
+            throw new PackagifyException('This package does not have a name. You can set one with `$package->name("example")');
+        }
+
+        if (empty($package->description)) {
+            throw new PackagifyException('This package does not have a description. You can set one with `$package->description("Example Description")');
+        }
+
+        if (empty($package->version)) {
+            throw new PackagifyException('This package does not have a version. You can set one with `$package->version("0.0.1")');
+        }
+
+        if (empty($package->prefix)) {
+            throw new PackagifyException('This package does not have a prefix. You can set one with `$package->prefix("larawise/")');
+        }
     }
 }
