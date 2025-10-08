@@ -6,6 +6,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Larawise\Packagify\Exceptions\PackagifyException;
 use ReflectionClass;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Srylius - The ultimate symphony for technology architecture!
@@ -158,4 +159,28 @@ abstract class PackagifyProvider extends ServiceProvider
         return $basePath . ($path ? DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR) : '');
     }
 
+    /**
+     * Create and configure a Finder instance to search for files or directories.
+     *
+     * @param string $name
+     * @param string $target
+     *
+     * @return Finder
+     */
+    protected function finder($name, $target = 'files')
+    {
+        // Create a new Finder instance and configure it based on the provided parameters.
+        return (new Finder)->$target()->in($this->path())->name($name);
+    }
+
+    /**
+     * Get or create a Filesystem instance.
+     *
+     * @return Filesystem
+     */
+    protected function files()
+    {
+        // Check if $this->files is already set. If so, return it. Otherwise, create and set a new Filesystem instance.
+        return $this->files ?: $this->files = new Filesystem;
+    }
 }
