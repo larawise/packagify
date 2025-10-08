@@ -2,6 +2,7 @@
 
 namespace Larawise\Packagify;
 
+use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Larawise\Packagify\Exceptions\PackagifyException;
@@ -22,7 +23,26 @@ use Symfony\Component\Finder\Finder;
 abstract class PackagifyProvider extends ServiceProvider
 {
     // Discovery
-    use Discovery\Lifecycle;
+    use Discovery\Aliases,
+        Discovery\Commands,
+        Discovery\Components,
+        Discovery\Composers,
+        Discovery\Configurations,
+        Discovery\Helpers,
+        Discovery\Lifecycle,
+        Discovery\Macros,
+        Discovery\Migrations,
+        Discovery\Providers,
+        Discovery\Routes,
+        Discovery\Translations,
+        Discovery\Views;
+
+    /**
+     * The migration creator implementation.
+     *
+     * @var MigrationCreator
+     */
+    protected $creator;
 
     /**
      * The packagify package.
@@ -72,19 +92,83 @@ abstract class PackagifyProvider extends ServiceProvider
     abstract public function configure(Packagify $package);
 
     /**
+     * Get or create a migration creator instance.
+     *
+     * @return MigrationCreator
+     */
+    protected function creator()
+    {
+        return $this->creator ??= new MigrationCreator($this->files(), $this->path('stubs/database'));
+    }
+
+    /**
      * Discovery for the all services provided package.
      *
      * @return void
      */
     protected function discovery()
     {
-        $concerns = [
-
+        $provideable = [
+            'Helpers',
+            'Translations',
+            'Routes',
+            'Providers',
+            'Aliases',
+            'Macros',
+            'Commands',
+            'Components',
+            'Migrations',
+            'Views',
+            'Composers',
         ];
 
-        foreach ($concerns as $target) {
-            $this->{'discover'.ucfirst($target)}();
+        foreach ($provideable as $target) {
+            $this->{"discover{$target}"}();
         }
+    }
+
+    /**
+     * Get or create a Filesystem instance.
+     *
+     * @return Filesystem
+     */
+    protected function files()
+    {
+        // Check if $this->files is already set. If so, return it. Otherwise, create and set a new Filesystem instance.
+        return $this->files ?: $this->files = new Filesystem;
+    }
+
+    /**
+     * Create and configure a Finder instance to search for files or directories.
+     *
+     * @param string $name
+     * @param string $target
+     *
+     * @return Finder
+     */
+    protected function finder($name, $target = 'files')
+    {
+        // Create a new Finder instance and configure it based on the provided parameters.
+        return (new Finder)->$target()->in($this->path())->name($name);
+    }
+
+    /**
+     * Get the current directory path of a packagify package.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    protected function path($path = '')
+    {
+        // Use ReflectionClass to get the file name of the current class.
+        $reflector = new ReflectionClass($this);
+
+        // Get the parent directory of the src folder.
+        $basePath = dirname($reflector->getFileName(), 2);
+
+        // Concatenate the cleaned-up path with the optional parameter $path.
+        return $basePath . ($path ? DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR) : '');
     }
 
     /**
@@ -106,11 +190,20 @@ abstract class PackagifyProvider extends ServiceProvider
         $this->configure($this->package);
         $this->validate($this->package);
 
+        // Discover and manage package configurations.
+        $this->discoveryConfigurations();
+
         // Set the package prefix, using the config value or a default.
         $this->prefix = $this->package->prefix ??= config('packagify.prefix', $this->prefix);
 
         // Hook for any actions after registering the package.
         $this->packageRegistered();
+
+        // Check if the shared instance of the Packagify packages should be registered in the container.
+        if (config('packagify.bindings')) {
+            // Register the instance of the package in the container with a dotted namespace.
+            $this->app->instance($this->package->namespace('dotted'), $this->package);
+        }
     }
 
     /**
@@ -138,49 +231,5 @@ abstract class PackagifyProvider extends ServiceProvider
         if (empty($package->prefix)) {
             throw new PackagifyException('This package does not have a prefix. You can set one with `$package->prefix("larawise/")');
         }
-    }
-
-    /**
-     * Get the current directory path of a packagify package.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
-    protected function path($path = '')
-    {
-        // Use ReflectionClass to get the file name of the current class.
-        $reflector = new ReflectionClass($this);
-
-        // Get the parent directory of the src folder.
-        $basePath = dirname($reflector->getFileName(), 2);
-
-        // Concatenate the cleaned-up path with the optional parameter $path.
-        return $basePath . ($path ? DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR) : '');
-    }
-
-    /**
-     * Create and configure a Finder instance to search for files or directories.
-     *
-     * @param string $name
-     * @param string $target
-     *
-     * @return Finder
-     */
-    protected function finder($name, $target = 'files')
-    {
-        // Create a new Finder instance and configure it based on the provided parameters.
-        return (new Finder)->$target()->in($this->path())->name($name);
-    }
-
-    /**
-     * Get or create a Filesystem instance.
-     *
-     * @return Filesystem
-     */
-    protected function files()
-    {
-        // Check if $this->files is already set. If so, return it. Otherwise, create and set a new Filesystem instance.
-        return $this->files ?: $this->files = new Filesystem;
     }
 }

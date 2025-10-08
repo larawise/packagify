@@ -18,7 +18,7 @@ use Illuminate\Foundation\AliasLoader;
 trait Aliases
 {
     /**
-     * Discovery and register package aliases.
+     * Discovers and registers package aliases.
      *
      * @return void
      */

@@ -22,7 +22,7 @@ trait Lifecycle
      */
     public function packageRegistering()
     {
-        // ...
+        // This function can be used to add any logic before registering the package.
     }
 
     /**
@@ -32,7 +32,7 @@ trait Lifecycle
      */
     public function packageRegistered()
     {
-        // ...
+        // This function can be used to add any logic after registering the package.
     }
 
     /**
@@ -42,7 +42,7 @@ trait Lifecycle
      */
     public function packageBooting()
     {
-        // ...
+        // This function can be used to add any logic before booting the package.
     }
 
     /**
@@ -52,6 +52,6 @@ trait Lifecycle
      */
     public function packageBooted()
     {
-        // ...
+        // This function can be used to add any logic after booting the package.
     }
 }
