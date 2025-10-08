@@ -17,5 +17,13 @@ use Illuminate\Support\ServiceProvider;
  */
 abstract class PackagifyProvider extends ServiceProvider
 {
-  // ...
+    /**
+     * Configure the packagify package.
+     *
+     * @param Packagify $package
+     *
+     * @return void
+     */
+    abstract public function configure(Packagify $package);
+
 }

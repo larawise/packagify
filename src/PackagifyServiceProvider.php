@@ -15,5 +15,17 @@ namespace Larawise\Packagify;
  */
 class PackagifyServiceProvider extends PackagifyProvider
 {
-  // ...
+    /**
+     * Configure the packagify package.
+     *
+     * @param Packagify $package
+     *
+     * @return void
+     */
+    public function configure(Packagify $package)
+    {
+        $package->name('packagify')
+            ->description('Packagify - Laravel packages made intuitive for every developer.')
+            ->version('0.0.1');
+    }
 }

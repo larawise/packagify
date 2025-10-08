@@ -123,6 +123,20 @@ class Packagify
     }
 
     /**
+     * Set the package version.
+     *
+     * @param string $version
+     *
+     * @return $this
+     */
+    public function version($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
      * Get the package namespace for the given type.
      *
      * @param string|null $type
