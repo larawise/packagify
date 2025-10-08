@@ -29,7 +29,8 @@ class PackagifyServiceProvider extends PackagifyProvider
     {
         $package->name('packagify')
             ->description('Packagify - Laravel packages made intuitive for every developer.')
-            ->version('0.0.1');
+            ->version('0.0.1')
+            ->hasConfigurations();
     }
 
     /**
