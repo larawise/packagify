@@ -57,9 +57,9 @@ return [
     'paths'                                     => [
         'package'       => env('PACKAGIFY_PACKAGES_PATH', base_path('system')),
         'configurations'=> env('PACKAGIFY_PUBLISH_CONFIGURATIONS', config_path()),
-        'translations'  => env('PACKAGIFY_PUBLISH_TRANSLATIONS', resource_path('languages')),
+        'translations'  => env('PACKAGIFY_PUBLISH_TRANSLATIONS', resource_path('languages/vendor')),
         'migrations'    => env('PACKAGIFY_PUBLISH_MIGRATIONS', database_path('migrations')),
-        'views'         => env('PACKAGIFY_PUBLISH_VIEWS', resource_path('views')),
+        'views'         => env('PACKAGIFY_PUBLISH_VIEWS', resource_path('views/vendor')),
         'providers'     => env('PACKAGIFY_PUBLISH_PROVIDERS', app_path('Providers')),
     ],
 ];

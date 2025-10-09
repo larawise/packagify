@@ -35,7 +35,7 @@ trait Views
 
         // If the application is running in the console, publish the views.
         if ($this->app->runningInConsole()) {
-            // Determine the publish path for the views.
+            // Determine the publishing path for the views.
             $publishPath = $this->app->joinPaths(config('packagify.paths.views'), $this->package->namespace());
 
             // Register paths to be published by the publish command.

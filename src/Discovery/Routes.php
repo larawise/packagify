@@ -2,9 +2,6 @@
 
 namespace Larawise\Packagify\Discovery;
 
-use Illuminate\Support\Facades\Route;
-use Srylius\Facades\Srylius;
-
 /**
  * Srylius - The ultimate symphony for technology architecture!
  *

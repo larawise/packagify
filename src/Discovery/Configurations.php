@@ -35,8 +35,15 @@ trait Configurations
 
         // Merge each configuration file from the package path.
         foreach ($this->package->configurations as $file) {
-            if (File::exists($target = $this->app->joinPaths($this->package->path, "config/$file.php"))) {
-                $this->mergeConfigFrom($target, $file);
+            // Path to the published config file (e.g. config/foo.php)
+            $published = $this->app->joinPaths($publish, "$file.php");
+
+            // Path to the package config file inside the package (e.g. vendor/package/config/foo.php)
+            $default = $this->app->joinPaths($this->package->path, "config/$file.php");
+
+            // If the selected config file exists, merge it into the application configuration
+            if (! File::exists($published) && File::exists($default)) {
+                $this->mergeConfigFrom($default, $file);
             }
         }
 
