@@ -22,7 +22,7 @@ trait Routes
      */
     protected function discoverRoutes()
     {
-        // Check if the package has routes enabled.
+        // Skip route discovering if the package doesn't declare routes.
         if (! $this->package->options['hasRoutes']) {
             return;
         }

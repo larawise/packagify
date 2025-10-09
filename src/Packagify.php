@@ -21,7 +21,8 @@ use Larawise\Packagify\Exceptions\PackagifyException;
 class Packagify
 {
     // Concerns
-    use Concerns\HasAliases,
+    use Concerns\HasAssets,
+        Concerns\HasAliases,
         Concerns\HasCommands,
         Concerns\HasComponents,
         Concerns\HasComposers,

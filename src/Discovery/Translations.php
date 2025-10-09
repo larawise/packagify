@@ -22,7 +22,7 @@ trait Translations
      */
     protected function discoverTranslations()
     {
-        // Check if the package has translations enabled.
+        // Skip translation discovering if the package doesn't declare translations.
         if (! $this->package->options['hasTranslations']) {
             return;
         }

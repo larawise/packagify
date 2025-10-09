@@ -22,7 +22,7 @@ trait Migrations
      */
     public function discoverMigrations()
     {
-        // Check if the package has migrations enabled.
+        // Skip migration discovering if the package doesn't declare migrations.
         if (! $this->package->options['hasMigrations']) {
             return;
         }

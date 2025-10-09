@@ -24,7 +24,8 @@ use Symfony\Component\Finder\Finder;
 abstract class PackagifyProvider extends ServiceProvider
 {
     // Discovery
-    use Discovery\Aliases,
+    use Discovery\Assets,
+        Discovery\Aliases,
         Discovery\Commands,
         Discovery\Components,
         Discovery\Composers,

@@ -24,9 +24,8 @@ trait Components
      */
     protected function discoverComponents()
     {
-        // Check if the package has components enabled.
+        // Skip component discovering if the package doesn't declare components.
         if (! $this->package->options['hasComponents']) {
-            // If components are not enabled, exit the method.
             return;
         }
 

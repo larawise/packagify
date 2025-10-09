@@ -22,7 +22,7 @@ trait Commands
      */
     protected function discoverCommands()
     {
-        // Check if the package has commands enabled.
+        // Skip command discovering if the package doesn't declare commands.
         if (! $this->package->options['hasCommands'] && ! $this->app->runningInConsole()) {
             return;
         }

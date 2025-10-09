@@ -22,7 +22,7 @@ trait Views
      */
     protected function discoverViews()
     {
-        // Check if the package has views enabled.
+        // Skip view discovering if the package doesn't declare views.
         if (! $this->package->options['hasViews']) {
             return;
         }

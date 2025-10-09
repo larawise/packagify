@@ -24,7 +24,7 @@ trait Configurations
      */
     protected function discoveryConfigurations()
     {
-        // Check if the package has configurations enabled.
+        // Skip configuration discovering if the package doesn't declare configurations.
         if (! $this->package->options['hasConfigurations']) {
             return;
         }

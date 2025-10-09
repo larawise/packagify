@@ -24,7 +24,7 @@ trait Helpers
      */
     protected function discoverHelpers()
     {
-        // Check if the package has routes enabled.
+        // Skip helper discovering if the package doesn't declare helpers.
         if (! $this->package->options['hasHelpers']) {
             return;
         }

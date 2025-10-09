@@ -26,7 +26,7 @@ trait Macros
      */
     protected function discoverMacros()
     {
-        // Check if the package has macros enabled.
+        // Skip macro discovering if the package doesn't declare macros.
         if (! $this->package->options['hasMacros']) {
             return;
         }

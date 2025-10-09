@@ -22,7 +22,7 @@ trait Providers
      */
     protected function discoverProviders()
     {
-        // Check if the package has providers enabled.
+        // Skip provider discovering if the package doesn't declare providers.
         if (! $this->package->options['hasProviders']) {
             return;
         }

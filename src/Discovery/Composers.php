@@ -24,7 +24,7 @@ trait Composers
      */
     protected function discoverComposers()
     {
-        // Check if the package has view composers enabled.
+        // Skip view composer discovering if the package doesn't declare view composers.
         if (! $this->package->options['hasComposers']) {
             return;
         }

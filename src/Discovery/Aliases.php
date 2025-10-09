@@ -24,7 +24,7 @@ trait Aliases
      */
     protected function discoverAliases()
     {
-        // Check if aliasing is enabled for the package.
+        // Skip alias discovering if the package doesn't declare aliases.
         if (! $this->package->options['hasAliases']) {
             return;
         }
