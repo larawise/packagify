@@ -20,7 +20,7 @@ trait HasMacros
      *
      * @var array<class-string, callable>
      */
-    public $macros = [];
+    public $customMacros = [];
 
     /**
      * Sets the hasMacros option and assigns macros.
@@ -42,7 +42,7 @@ trait HasMacros
         $macros = is_array($macroable) ? $macroable : [$macroable => $macro];
 
         // Assign the macros to the package.
-        $this->macros = $macros;
+        $this->customMacros = $macros;
 
         // Return the current instance for method chaining.
         return $this;

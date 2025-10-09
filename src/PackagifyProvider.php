@@ -5,6 +5,7 @@ namespace Larawise\Packagify;
 use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Traits\Macroable;
 use Larawise\Packagify\Exceptions\PackagifyException;
 use ReflectionClass;
 use Symfony\Component\Finder\Finder;
@@ -35,7 +36,8 @@ abstract class PackagifyProvider extends ServiceProvider
         Discovery\Providers,
         Discovery\Routes,
         Discovery\Translations,
-        Discovery\Views;
+        Discovery\Views,
+        Macroable;
 
     /**
      * The migration creator implementation.

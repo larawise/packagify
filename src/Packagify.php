@@ -5,6 +5,7 @@ namespace Larawise\Packagify;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
+use Larawise\Packagify\Exceptions\PackagifyException;
 
 /**
  * Srylius - The ultimate symphony for technology architecture!
@@ -83,6 +84,23 @@ class Packagify
      * @var array<string, bool>
      */
     public $options = [];
+
+    /**
+     * Get the packagify package instance.
+     *
+     * @param string $alias
+     *
+     * @return Packagify
+     * @throws PackagifyException
+     */
+    public function of($alias)
+    {
+        if (! config('packagify.bindings')) {
+            throw new PackagifyException("Register shared instance of container packages is not enabled for Packagify. You can enable it by setting the `bindings` value to true.");
+        }
+
+        return app($alias);
+    }
 
     /**
      * Get the package full name.

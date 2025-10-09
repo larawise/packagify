@@ -68,4 +68,6 @@ trait Migrations
 
         return count($this->files()->glob($path)) !== 0;
     }
+
+
 }

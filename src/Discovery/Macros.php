@@ -32,13 +32,13 @@ trait Macros
         }
 
         // Iterate through each handler and its associated macros.
-        foreach ($this->package->macros as $target => $macros) {
+        foreach ($this->package->customMacros as $target => $macros) {
             // Check if the handler class uses the Macroable trait.
             $macroable = in_array(Macroable::class, class_uses($target));
 
             // If the handler is not macroable, throw an exception.
             if (! $macroable) {
-                throw PackagifyException::classNotMacroable($target);
+                throw new PackagifyException("The class {$target} is not macroable. Ensure it implements the necessary traits or interfaces.");
             }
 
             // Register each macro for the handler.
@@ -52,7 +52,7 @@ trait Macros
                     $this->{$method}($target);
                 } else {
                     // If the method does not exist, throw an exception.
-                    throw PackagifyException::macroNotExists($macro);
+                    throw new PackagifyException("The macro [{$macro}] does not exist.");
                 }
             }
         }
