@@ -19,7 +19,7 @@ use Illuminate\View\Component;
 trait HasComponents
 {
     /**
-     * The package view components.
+     * The package view components storage.
      *
      * @var array<string, string>
      */
@@ -40,7 +40,7 @@ trait HasComponents
     public $asAnonymousComponents = false;
 
     /**
-     * Sets the hasComponents option and assigns the view components.
+     * Enable component discovery for the `Packagify` package.
      *
      * @param string|array<string, string> $prefix The prefix or an array of component aliases and namespaces.
      * @param string|array<string, Component>|null $component The namespace or an array of components with their namespaces.
@@ -49,7 +49,7 @@ trait HasComponents
      */
     public function hasComponents($prefix, $component = null)
     {
-        // Set the 'hasComponents' option to true
+        // Set the view components discovery option to true for Packagify.
         $this->option(
             key: 'hasComponents',
             value: true

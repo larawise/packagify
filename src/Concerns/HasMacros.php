@@ -16,14 +16,14 @@ namespace Larawise\Packagify\Concerns;
 trait HasMacros
 {
     /**
-     * The package macros.
+     * The package macro storage.
      *
      * @var array<class-string, callable>
      */
     public $customMacros = [];
 
     /**
-     * Sets the hasMacros option and assigns macros.
+     * Enable macro discovery for the `Packagify` package.
      *
      * @param string|array $macroable
      * @param callable|array|null $macro
@@ -32,7 +32,7 @@ trait HasMacros
      */
     public function hasMacros($macroable, $macro = null)
     {
-        // Set the option indicating that the package has macros.
+        // Set the macro discovery option to true for Packagify.
         $this->option(
             key: 'hasMacros',
             value: true

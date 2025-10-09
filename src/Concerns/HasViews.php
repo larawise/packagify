@@ -23,15 +23,15 @@ trait HasViews
     public $viewNamespace = null;
 
     /**
-     * Sets the hasViews option and assigns the view namespace.
+     * Enable view discovery for the `Packagify` package.
      *
-     * @param string|array|null $namespace The view namespace
+     * @param string|array|null $namespace
      *
-     * @return $this Returns the current instance for chaining.
+     * @return $this
      */
     public function hasViews($namespace = null)
     {
-        // Set the hasViews option to true
+        // Set the view discovery option to true for Packagify.
         $this->option(
             key: 'hasViews',
             value: true

@@ -16,14 +16,14 @@ namespace Larawise\Packagify\Concerns;
 trait HasComposers
 {
     /**
-     * The package view composers.
+     * The package view composer storage.
      *
      * @var array<string, mixed>
      */
     public $viewComposers = [];
 
     /**
-     * Adds view composers and sets the `hasComposers` option.
+     * Enable composer discovery for the `Packagify` package.
      *
      * @param string|array $view
      * @param mixed $composer
@@ -32,7 +32,7 @@ trait HasComposers
      */
     public function hasComposers($view, $composer)
     {
-        // Set the hasComposers option to true
+        // Set the composer discovery option to true for Packagify.
         $this->option(
             key: 'hasComposers',
             value: true

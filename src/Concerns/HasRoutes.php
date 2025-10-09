@@ -16,14 +16,14 @@ namespace Larawise\Packagify\Concerns;
 trait HasRoutes
 {
     /**
-     * The package route files.
+     * The package route storage.
      *
      * @var string[]
      */
     public $routes = [];
 
     /**
-     * Sets the hasRoutes option and assigns route files.
+     * Enable route discovery for the `Packagify` package.
      *
      * @param string|array $files
      *
@@ -31,7 +31,7 @@ trait HasRoutes
      */
     public function hasRoutes($files = [])
     {
-        // Set the hasRoutes option to true
+        // Set the route discovery option to true for Packagify.
         $this->option(
             key: 'hasRoutes',
             value: true

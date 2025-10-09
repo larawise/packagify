@@ -16,14 +16,14 @@ namespace Larawise\Packagify\Concerns;
 trait HasAliases
 {
     /**
-     * Stores package aliases.
+     * The package alias storage.
      *
      * @var array<string, string>
      */
     public $aliases = [];
 
     /**
-     * Adds aliases and enables the `hasAliases` option.
+     * Enable alias discovery for the `Packagify` package.
      *
      * @param array<string, string>|string $alias
      * @param string|null $class
@@ -32,7 +32,7 @@ trait HasAliases
      */
     public function hasAliases($alias, $class = null)
     {
-        // Enable the `hasAliases` option
+        // Set the alias discovery option to true for Packagify.
         $this->option(
             key: 'hasAliases',
             value: true

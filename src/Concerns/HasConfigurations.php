@@ -16,14 +16,14 @@ namespace Larawise\Packagify\Concerns;
 trait HasConfigurations
 {
     /**
-     * The package configuration files.
+     * The package configuration storage.
      *
      * @var string[]
      */
     public $configurations = [];
 
     /**
-     * Sets the hasConfigurations option and assigns the config files.
+     * Enable configuration discovery for the `Packagify` package.
      *
      * @param string|array|null $files
      *
@@ -31,6 +31,7 @@ trait HasConfigurations
      */
     public function hasConfigurations($files = null)
     {
+        // Set the configuration discovery option to true for Packagify.
         $this->option(
             key: 'hasConfigurations',
             value: true
@@ -40,8 +41,6 @@ trait HasConfigurations
 
         if (empty($files)) {
             $files[] = $this->shortName();
-            $files[] = 'permissions';
-            $files[] = 'email';
         }
 
         $this->configurations = $files;

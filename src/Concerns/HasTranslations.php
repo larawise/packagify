@@ -16,14 +16,14 @@ namespace Larawise\Packagify\Concerns;
 trait HasTranslations
 {
     /**
-     * The package translations namespace.
+     * The package translation namespace.
      *
      * @var string|null
      */
     public $translationNamespace = null;
 
     /**
-     * Sets the hasTranslations option and assigns the translation namespace.
+     * Enable translation discovery for the `Packagify` package.
      *
      * @param string|null $namespace
      *
@@ -31,7 +31,7 @@ trait HasTranslations
      */
     public function hasTranslations($namespace = null)
     {
-        // Set the hasTranslations option to true
+        // Set the translation discovery option to true for Packagify.
         $this->option(
             key: 'hasTranslations',
             value: true

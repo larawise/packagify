@@ -16,14 +16,14 @@ namespace Larawise\Packagify\Concerns;
 trait HasCommands
 {
     /**
-     * The package commands.
+     * The package command storage.
      *
      * @var string[]
      */
     public $commands = [];
 
     /**
-     * Adds commands and sets the `hasCommands` option.
+     * Enable command discovery for the `Packagify` package.
      *
      * @param string|array $commands Commands to be added
      *
@@ -31,7 +31,7 @@ trait HasCommands
      */
     public function hasCommands($commands)
     {
-        // Set the hasCommands option to true
+        // Set the console command discovery option to true for Packagify.
         $this->option(
             key: 'hasCommands',
             value: true

@@ -16,22 +16,22 @@ namespace Larawise\Packagify\Concerns;
 trait HasProviders
 {
     /**
-     * The package providers.
+     * The package service provider storage.
      *
      * @var string[]
      */
     public $providers = [];
 
     /**
-     * Sets the hasProviders option and assigns providers.
+     * Enable service provider discovery for the `Packagify` package.
      *
-     * @param string|array $providers The providers to be added
+     * @param string|array $providers
      *
-     * @return $this Returns the current instance for chaining.
+     * @return $this
      */
     public function hasProviders($providers)
     {
-        // Set the hasProviders option to true
+        // Set the service provider discovery option to true for Packagify.
         $this->option(
             key: 'hasProviders',
             value: true

@@ -16,14 +16,14 @@ namespace Larawise\Packagify\Concerns;
 trait HasSchedules
 {
     /**
-     * Schedule commands for package.
+     * The package schedule command storage.
      *
      * @var string[]
      */
     public $schedules = [];
 
     /**
-     * Adds commands and sets the `hasSchedules` option.
+     * Enable schedule command discovery for the `Packagify` package.
      *
      * @param string|array $commands
      *
@@ -31,7 +31,7 @@ trait HasSchedules
      */
     public function hasSchedules($commands)
     {
-        // Set the hasCommands option to true
+        // Set the schedule command discovery option to true for Packagify.
         $this->option(
             key: 'hasSchedules',
             value: true

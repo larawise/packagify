@@ -16,20 +16,22 @@ namespace Larawise\Packagify\Concerns;
 trait HasMigrations
 {
     /**
+     * The package migration storage.
      *
      * @var string|array|null
      */
     public $migrations = null;
 
     /**
-     * Set the hasMigrations option and assign migration files.
+     * Enable migration discovery for the `Packagify` package.
      *
      * @param string|array|null $tables
      *
-     * @return $this Returns the current instance for chaining.
+     * @return $this
      */
     public function hasMigrations($tables = null)
     {
+        // Set the migration discovery option to true for Packagify.
         $this->option(
             key: 'hasMigrations',
             value: true

@@ -16,14 +16,14 @@ namespace Larawise\Packagify\Concerns;
 trait HasHelpers
 {
     /**
-     * The package helper files.
+     * The package helper storage.
      *
      * @var string[]
      */
     public $helpers = [];
 
     /**
-     * Sets the hasHelpers option and assigns helper files.
+     * Enable helper discovery for the `Packagify` package.
      *
      * @param string|array $files
      *
@@ -31,7 +31,7 @@ trait HasHelpers
      */
     public function hasHelpers($files = [])
     {
-        // Set the hasRoutes option to true
+        // Set the helper discovery option to true for Packagify.
         $this->option(
             key: 'hasHelpers',
             value: true
@@ -42,7 +42,6 @@ trait HasHelpers
 
         if (empty($files)) {
             $files[] = $this->shortName();
-            $files[] = 'constants';
         }
 
         $this->helpers = $files;
