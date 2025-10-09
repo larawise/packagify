@@ -83,7 +83,21 @@ class Packagify
      *
      * @var array<string, bool>
      */
-    public $options = [];
+    public $options = [
+        'hasAliases' => false,
+        'hasAssets' => false,
+        'hasRoutes' => false,
+        'hasConfigurations' => false,
+        'hasMigrations' => false,
+        'hasTranslations' => false,
+        'hasViews' => false,
+        'hasMacros' => false,
+        'hasComposers' => false,
+        'hasComponents' => false,
+        'hasHelpers' => false,
+        'hasProviders' => false,
+        'hasCommands' => false,
+    ];
 
     /**
      * Get the packagify package instance.
