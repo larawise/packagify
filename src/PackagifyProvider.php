@@ -24,8 +24,9 @@ use Symfony\Component\Finder\Finder;
 abstract class PackagifyProvider extends ServiceProvider
 {
     // Discovery
-    use Discovery\Assets,
-        Discovery\Aliases,
+    use Discovery\Aliases,
+        Discovery\Assets,
+        Discovery\Bindings,
         Discovery\Commands,
         Discovery\Components,
         Discovery\Composers,
@@ -36,6 +37,7 @@ abstract class PackagifyProvider extends ServiceProvider
         Discovery\Migrations,
         Discovery\Providers,
         Discovery\Routes,
+        Discovery\Singletons,
         Discovery\Translations,
         Discovery\Views,
         Macroable;
@@ -111,23 +113,21 @@ abstract class PackagifyProvider extends ServiceProvider
      */
     protected function discovery()
     {
-        $provideable = [
-            'Helpers',
-            'Translations',
-            'Routes',
-            'Providers',
-            'Aliases',
-            'Macros',
-            'Commands',
-            'Components',
-            'Migrations',
-            'Views',
-            'Composers',
-        ];
-
-        foreach ($provideable as $target) {
-            $this->{"discover{$target}"}();
-        }
+        $this->discoverAliases();
+        $this->discoverAssets();
+        $this->discoverBindings();
+        $this->discoverCommands();
+        $this->discoverComponents();
+        $this->discoverComposers();
+        $this->discoverHelpers();
+        $this->discoverMacros();
+        $this->discoverMigrations();
+        $this->discoverProviders();
+        $this->discoverRoutes();
+        //$this->discoverSchedules();
+        $this->discoverSingletons();
+        $this->discoverTranslations();
+        $this->discoverViews();
     }
 
     /**
