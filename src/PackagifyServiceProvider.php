@@ -3,14 +3,14 @@
 namespace Larawise\Packagify;
 
 use Illuminate\Foundation\Console\PackageDiscoverCommand;
-use Larawise\Packagify\Commands\DiscoverCommand;
+use Larawise\Packagify\Console\DiscoverCommand;
 
 /**
  * Srylius - The ultimate symphony for technology architecture!
  *
  * @package     Larawise
  * @subpackage  Packagify
- * @version     v0.0.1
+ * @version     v1.0.0
  * @author      Selçuk Çukur <hk@selcukcukur.com.tr>
  * @copyright   Srylius Teknoloji Limited Şirketi
  *
@@ -27,10 +27,18 @@ class PackagifyServiceProvider extends PackagifyProvider
      */
     public function configure(Packagify $package)
     {
-        $package->name('packagify')
-            ->description('Packagify - Laravel packages made intuitive for every developer.')
-            ->version('0.0.1')
-            ->hasConfigurations();
+        // Set the package name.
+        $package->name('packagify');
+
+        // Set the package description.
+        $package->description('Packagify - Laravel packages made intuitive for every developer.');
+
+        // Set the package version.
+        $package->version('1.0.0');
+
+        // Set the package provideable.
+        $package->hasConfigurations();
+        $package->hasCommands(Console\MakeCommand::class);
     }
 
     /**

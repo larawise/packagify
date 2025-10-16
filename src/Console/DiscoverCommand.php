@@ -1,6 +1,6 @@
 <?php
 
-namespace Larawise\Packagify\Commands;
+namespace Larawise\Packagify\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\PackageManifest;
@@ -13,7 +13,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
  *
  * @package     Larawise
  * @subpackage  Packagify
- * @version     v0.0.1
+ * @version     v1.0.0
  * @author      Selçuk Çukur <hk@selcukcukur.com.tr>
  * @copyright   Srylius Teknoloji Limited Şirketi
  *

@@ -2,14 +2,12 @@
 
 namespace Larawise\Packagify\Discovery;
 
-use Illuminate\Foundation\AliasLoader;
-
 /**
  * Srylius - The ultimate symphony for technology architecture!
  *
  * @package     Larawise
  * @subpackage  Packagify
- * @version     v0.0.1
+ * @version     v1.0.0
  * @author      Selçuk Çukur <hk@selcukcukur.com.tr>
  * @copyright   Srylius Teknoloji Limited Şirketi
  *
