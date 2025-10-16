@@ -31,6 +31,7 @@ abstract class PackagifyProvider extends ServiceProvider
         Discovery\Components,
         Discovery\Composers,
         Discovery\Configurations,
+        Discovery\Directives,
         Discovery\Helpers,
         Discovery\Lifecycle,
         Discovery\Macros,
@@ -119,6 +120,7 @@ abstract class PackagifyProvider extends ServiceProvider
         $this->discoverCommands();
         $this->discoverComponents();
         $this->discoverComposers();
+        $this->discoverDirectives();
         $this->discoverHelpers();
         $this->discoverMacros();
         $this->discoverMigrations();

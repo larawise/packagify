@@ -13,35 +13,36 @@ namespace Larawise\Packagify\Concerns;
  *
  * @see https://docs.larawise.com/ Larawise : Docs
  */
-trait HasSchedules
+trait HasDirectives
 {
     /**
-     * The package schedule command storage.
+     * The package directives' storage.
      *
-     * @var string[]
+     * @var array
      */
-    public $schedules = [];
+    public $directives = [];
 
     /**
-     * Enable schedule command discovery for the `Packagify` package.
+     * Enable blade directive discovery for the `Packagify` package.
      *
-     * @param string|array $commands
+     * @param array<string, callable>|string $directive
+     * @param string|null $callback
      *
      * @return $this
      */
-    public function hasSchedules($commands)
+    public function hasDirectives($directive, $callback = null)
     {
-        // Set the schedule command discovery option to true for Packagify.
+        // Set the alias discovery option to true for Packagify.
         $this->option(
-            key: 'hasSchedules',
+            key: 'hasDirectives',
             value: true
         );
 
         // Convert commands to array if not already
-        $commands = is_array($commands) ? $commands : [$commands];
+        $directives = is_array($directive) ? $directive : [$directive => $callback];
 
         // Assign commands
-        $this->schedules = array_merge($this->schedules, $commands);
+        $this->directives = array_merge($this->directives, $directives);
 
         return $this;
     }
