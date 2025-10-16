@@ -38,7 +38,6 @@ class PackagifyServiceProvider extends PackagifyProvider
 
         // Set the package provideable.
         $package->hasConfigurations();
-        $package->hasCommands(Console\MakeCommand::class);
     }
 
     /**
