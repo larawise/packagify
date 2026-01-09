@@ -6,23 +6,21 @@ return [
     | ℹ️ Packagify (Prefix)
     |--------------------------------------------------------------------------
     |
-    | Managing all packages registered with Packagify with a central prefix
-    | fis supported. The goal is to ensure sustainability and avoid conflicts
-    | with different packages or projects in the future, as well as to provide
-    | customizability. The prefix you set will be applicable to all packages.
+    | Packagify uses a central prefix to manage all registered packages. This
+    | ensures sustainability, prevents conflicts across projects, and applies
+    | the defined prefix consistently to all packages.
     |
     */
-    'prefix'                                    => env('PACKAGIFY_PREFIX', 'larawise/'),
+    'prefix' => env('PACKAGIFY_PREFIX', 'larawise/'),
 
     /*
     |--------------------------------------------------------------------------
     | ℹ️ Packagify (Prefixex)
     |--------------------------------------------------------------------------
     |
-    | Managing all packages registered with Packagify with a central prefix
-    | fis supported. The goal is to ensure sustainability and avoid conflicts
-    | with different packages or projects in the future, as well as to provide
-    | customizability. The prefix you set will be applicable to all packages.
+    | Packagify uses these prefixes to detect packages via the `discover` command.
+    | This prevents naming conflicts across projects and ensures sustainable
+    | management. The defined prefixes apply consistently to all discovered packages.
     |
     */
     'prefixes'                                  => [ ...array_filter(
@@ -34,10 +32,9 @@ return [
     | ℹ️ Packagify (Bindings)
     |--------------------------------------------------------------------------
     |
-    | Since Packagify is a comprehensive solution aimed at achieving sustainability
-    | and maximizing package development processes without requiring extensive workload,
-    | enable this setting if you need to globally access the instances of all packages
-    | registered by Packagify across the application.
+    | Packagify can bind all registered packages globally. Enable this to access
+    | package instances across the application. Helps ensure sustainability and
+    | easier package management.
     |
     */
     'bindings'                                  => (bool) env('PACKAGIFY_BINDINGS', false),
@@ -47,11 +44,10 @@ return [
     | ℹ️ Packagify (Paths)
     |--------------------------------------------------------------------------
     |
-    | If you have changed the directories that are customizable by Laravel and are used
-    | to publish certain components such as translations and view files discovered by
-    | the packages, you can set these paths for Packagify in your application.
-    | After setting them, these components will be moved to these directories when
-    | the `vendor:publish` command is used.
+    | Packagify allows customizing publishable paths for components like configs,
+    | views, and translations. Set these paths to control where package resources
+    | are published in your application. They will be used when running the
+    | `vendor:publish` command.
     |
     */
     'paths'                                     => [
