@@ -30,7 +30,7 @@ For comprehensive guidance, please refer to the detailed section provided.
 ## Security : Report
 
 If you discover a critical or minor vulnerability in the **Larawise Project**,
-please report it confidentially to **Selçuk Çukur <hk@selcukcukur.com.tr>** with detailed information.
+please report it confidentially to **Selçuk Çukur <selcukcukur@outlook.com.tr>** with detailed information.
 By doing so, you help ensure prompt resolution and contribute to the ongoing improvement of the **Larawise Project**.
 
 We appreciate your effort in helping us maintain a secure and reliable ecosystem. Your responsible

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * @package     Larawise
  * @subpackage  Packagify
  * @version     v1.0.0
- * @author      Selçuk Çukur <hk@selcukcukur.com.tr>
+ * @author      Selçuk Çukur <selcukcukur@outlook.com.tr>
  * @copyright   Srylius Teknoloji Limited Şirketi
  *
  * @see https://docs.larawise.com/ Larawise : Docs
