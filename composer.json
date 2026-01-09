@@ -22,6 +22,13 @@
         "php"                               : "^8.2|^8.3|^8.4",
         "larawise/larawise"                 : "dev-main"
     },
+    "require-dev"           : {
+        "mockery/mockery"                   : "^1.5",
+        "orchestra/testbench"               : "^10.0",
+        "pestphp/pest"                      : "^3.1",
+        "phpunit/php-code-coverage"         : "^11.0",
+        "phpunit/phpunit"                   : "^11.5"
+    },
 
     "autoload"              : {
         "psr-4"     : {
@@ -30,7 +37,7 @@
     },
     "autoload-dev"          : {
         "psr-4"     : {
-            "Larawise\\Tests\\"             : "./tests"
+            "Larawise\\Packagify\\Tests\\"  : "./tests"
         }
     },
 
@@ -45,7 +52,9 @@
         "optimize-autoloader"   : true,
         "preferred-install"     : "dist",
         "sort-packages"         : true,
-        "allow-plugins"         : {}
+        "allow-plugins"         : {
+            "pestphp/pest-plugin": true
+        }
     },
 
     "minimum-stability"     : "dev",
